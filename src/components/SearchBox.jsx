@@ -58,7 +58,7 @@ const Loader = () => {
 
 export default function SearchBox({ data, data3 }) {
   const randomNumber = Math.floor(Math.random() * 1000);
-  console.log(data);
+
   return (
     <Table aria-label="Lease List" isCompact>
       <TableHeader>

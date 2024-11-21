@@ -122,7 +122,6 @@ export default function SearchMAC() {
   useEffect(() => {
     if (data2) {
       data2.map((data) => {
-        console.log(data.scopeId);
         axios({
           url: `https://${process.env.REACT_APP_API_BASEURL}/api/dhcp/scope/${data?.scopeId}`,
           method: "GET",
@@ -140,7 +139,6 @@ export default function SearchMAC() {
               setLoading(false);
             }
           });
-        console.log(data3);
       });
     }
   }, [data2]);

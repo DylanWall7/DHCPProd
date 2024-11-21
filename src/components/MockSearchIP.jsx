@@ -167,7 +167,6 @@ export default function SearchReservation() {
   useEffect(() => {
     if (data2) {
       data2.map((data) => {
-        console.log(data.scopeId);
         axios({
           url: `https://${process.env.REACT_APP_API_BASEURL}/api/dhcp/scope/${data?.scopeId}`,
           method: "GET",
@@ -185,7 +184,6 @@ export default function SearchReservation() {
               setLoading(false);
             }
           });
-        console.log(data3);
       });
     }
   }, [data2]);
@@ -345,7 +343,7 @@ export default function SearchReservation() {
 
   function CustomTable() {
     const data = data2;
-    console.log(data);
+
     return (
       <Box alignItems={"center"} justifyContent={"center"} display={"flex"}>
         {data2[0] ? (
