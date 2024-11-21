@@ -32,9 +32,12 @@ import { PatchTheReservation, DeleteTheReservation } from "../authConfig";
 import { Table } from "rsuite";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import { data } from "autoprefixer";
 
 export default function SearchReservation() {
   const [data2, setData2] = useState([]);
+  const [data3, setData3] = useState([]);
+  const [data4, setData4] = useState([]);
   const [userInput, setUserInput] = useState([]);
   const [loading, setLoading] = useState();
   const [statusCode, setStatusCode] = useState();
@@ -160,6 +163,32 @@ export default function SearchReservation() {
       );
     }
   };
+
+  useEffect(() => {
+    if (data2) {
+      data2.map((data) => {
+        console.log(data.scopeId);
+        axios({
+          url: `https://${process.env.REACT_APP_API_BASEURL}/api/dhcp/scope/${data?.scopeId}`,
+          method: "GET",
+          dataResponse: "json",
+        })
+          .then((response) => {
+            setLoading(true);
+            setData3(response.data);
+          })
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((error) => {
+            if (error.code) {
+              setLoading(false);
+            }
+          });
+        console.log(data3);
+      });
+    }
+  }, [data2]);
 
   const { Column, HeaderCell, Cell } = Table;
   const request = {
@@ -316,13 +345,13 @@ export default function SearchReservation() {
 
   function CustomTable() {
     const data = data2;
-
+    console.log(data);
     return (
       <Box alignItems={"center"} justifyContent={"center"} display={"flex"}>
         {data2[0] ? (
           <Table
             // height={400}
-            width={1000}
+            width={1300}
             autoHeight={true}
             data={data}
             onRowClick={(rowData) => {
@@ -341,6 +370,15 @@ export default function SearchReservation() {
             >
               <HeaderCell>IP Address</HeaderCell>
               <Cell dataKey="ipAddress" />
+            </Column>
+            <Column
+              width={230}
+              resizable
+              align="center"
+              style={{ fontSize: 14 }}
+            >
+              <HeaderCell>Scope</HeaderCell>
+              <Cell>{data3?.name}</Cell>
             </Column>
 
             <Column

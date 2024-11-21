@@ -89,6 +89,8 @@ export default function ConvertToReservation() {
     account: accounts[0],
   };
 
+  console.log(data2);
+
   async function onCreate(values) {
     setIsSubButtonLoading(true);
     CreateReservation({

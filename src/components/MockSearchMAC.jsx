@@ -18,6 +18,7 @@ import SearchBox from "./SearchBox";
 
 export default function SearchMAC() {
   const [data2, setData2] = useState([]);
+  const [data3, setData3] = useState([]);
   const [userInput, setUserInput] = useState([]);
   const [loading, setLoading] = useState();
   const [statusCode, setStatusCode] = useState();
@@ -117,6 +118,32 @@ export default function SearchMAC() {
         });
     }
   };
+
+  useEffect(() => {
+    if (data2) {
+      data2.map((data) => {
+        console.log(data.scopeId);
+        axios({
+          url: `https://${process.env.REACT_APP_API_BASEURL}/api/dhcp/scope/${data?.scopeId}`,
+          method: "GET",
+          dataResponse: "json",
+        })
+          .then((response) => {
+            setLoading(true);
+            setData3(response.data);
+          })
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((error) => {
+            if (error.code) {
+              setLoading(false);
+            }
+          });
+        console.log(data3);
+      });
+    }
+  }, [data2]);
 
   const ThereIsError = (error) => {
     if (data2)
@@ -292,7 +319,7 @@ export default function SearchMAC() {
     return (
       <div className="m-5">
         {data.length !== 0 ? (
-          <SearchBox data={data} className="mb-5"></SearchBox>
+          <SearchBox data={data} data3={data3} className="mb-5"></SearchBox>
         ) : (
           ""
         )}
@@ -384,7 +411,7 @@ export default function SearchMAC() {
 
       <ThereIsError />
 
-      <CustomTable data={data2} />
+      <CustomTable data={data2} data3={data3} />
     </Box>
   );
 }

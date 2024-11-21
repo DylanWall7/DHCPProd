@@ -37,6 +37,7 @@ export default function SearchSiteCodeTable({ data }) {
             Scope Name
           </TableColumn>
           <TableColumn className=" bg-[#e8ebef]">Scope ID</TableColumn>
+          <TableColumn className=" bg-[#e8ebef]">Gateway</TableColumn>
           <TableColumn className=" bg-[#e8ebef]">Scope Start Range</TableColumn>
           <TableColumn className=" bg-[#e8ebef]">Scope End Range</TableColumn>
           <TableColumn className=" bg-[#e8ebef]">Subnet Mask</TableColumn>
@@ -47,6 +48,13 @@ export default function SearchSiteCodeTable({ data }) {
             <TableRow className="bg-[#e8ebef]" key={row.scopeID}>
               <TableCell className="">{row.name}</TableCell>
               <TableCell>{row.scopeID}</TableCell>
+              <TableCell>
+                {row?.dhcpOptions?.map((option) =>
+                  option.name === "Router" ? (
+                    <div key={option.value}>{option.value}</div>
+                  ) : null
+                )}
+              </TableCell>
               <TableCell>{row.startRange}</TableCell>
               <TableCell>{row.endRange}</TableCell>
               <TableCell>{row.subnetMask}</TableCell>

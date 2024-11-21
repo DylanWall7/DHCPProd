@@ -3012,7 +3012,7 @@
     "@react-types/tabs" "^3.3.3"
     scroll-into-view-if-needed "3.0.10"
 
-"@nextui-org/theme@*", "@nextui-org/theme@>=2.1.0", "@nextui-org/theme@2.1.18":
+"@nextui-org/theme@^2.1.18", "@nextui-org/theme@>=2.1.0", "@nextui-org/theme@2.1.18":
   version "2.1.18"
   resolved "https://registry.npmjs.org/@nextui-org/theme/-/theme-2.1.18.tgz"
   integrity sha512-2ptDh350lVD0yejZTpGv4fkeoGKB8+B/Coblzpjijfofn/t6MQIRIRRLp04wCCa/IbeevjS2wyadWpMDtVh3CQ==

@@ -39,6 +39,18 @@ export default function SearchScopeTable({ dhcpStats, scopeData }) {
               <p>{scopeData?.endRange}</p>
             </div>
             <div className=" justify-evenly text-sm flex flex-row gap-3 ">
+              <p className="">Gateway: </p>
+            </div>
+            <div className=" justify-evenly text-sm flex flex-row gap-3 ">
+              <p>
+                {scopeData?.dhcpOptions?.map((option) =>
+                  option.name === "Router" ? (
+                    <div key={option?.value}>{option?.value}</div>
+                  ) : null
+                )}
+              </p>
+            </div>
+            <div className=" justify-evenly text-sm flex flex-row gap-3 ">
               <p className="">Subnet Mask: </p>
             </div>
             <div className=" justify-evenly text-sm flex flex-row gap-3  ">
