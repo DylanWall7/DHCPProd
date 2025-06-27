@@ -120,26 +120,38 @@ export default function SearchMAC() {
   };
 
   useEffect(() => {
-    if (data2) {
-      data2.map((data) => {
-        axios({
-          url: `https://${process.env.REACT_APP_API_BASEURL}/api/dhcp/scope/${data?.scopeId}`,
-          method: "GET",
-          dataResponse: "json",
-        })
-          .then((response) => {
-            setLoading(true);
-            setData3(response.data);
-          })
-          .then(() => {
-            setLoading(false);
-          })
-          .catch((error) => {
-            if (error.code) {
-              setLoading(false);
-            }
+    if (Array.isArray(data2) && data2.length > 0) {
+      // Get all unique scopeIds from data2
+      const scopeIds = [
+        ...new Set(data2.map((item) => item?.scopeId).filter(Boolean)),
+      ];
+
+      // Fetch all scopes in parallel
+      Promise.all(
+        scopeIds.map((scopeId) =>
+          axios({
+            url: `https://${process.env.REACT_APP_API_BASEURL}/api/dhcp/scope/${scopeId}`,
+            method: "GET",
+            dataResponse: "json",
+          }).then((response) => ({
+            scopeId,
+            ...response.data,
+          }))
+        )
+      )
+        .then((results) => {
+          // Map scopeId to scope data for easy lookup
+          const scopeMap = {};
+          results.forEach((scope) => {
+            scopeMap[scope.scopeId] = scope;
           });
-      });
+          setData3(scopeMap);
+        })
+        .catch((error) => {
+          setLoading(false);
+        });
+    } else {
+      setData3({});
     }
   }, [data2]);
 

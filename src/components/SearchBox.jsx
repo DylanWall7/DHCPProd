@@ -59,6 +59,8 @@ const Loader = () => {
 export default function SearchBox({ data, data3 }) {
   const randomNumber = Math.floor(Math.random() * 1000);
 
+  console.log("data3", data3);
+  console.log("data", data);
   return (
     <Table aria-label="Lease List" isCompact>
       <TableHeader>
@@ -75,8 +77,9 @@ export default function SearchBox({ data, data3 }) {
           <TableRow key={randomNumber}>
             <TableCell>{row.scopeId}</TableCell>
             <TableCell>{row.ipAddress}</TableCell>
-            <TableCell>{!data3 ? <Loader /> : data3?.name}</TableCell>
+            {/* <TableCell>{!data3 ? <Loader /> : data3?.name}</TableCell> */}
 
+            <TableCell>{data3?.[row.scopeId]?.name}</TableCell>
             <TableCell>{row.clientId}</TableCell>
             <TableCell>{row.hostName}</TableCell>
             <TableCell>
