@@ -333,7 +333,7 @@ export default function ConvertToReservation() {
                   <Cell dataKey="hostName" />
                 </Column>
 
-                <Column width={80} fixed="right" align="center" resizable>
+                {/* <Column width={80} fixed="right" align="center" resizable> ///UPDATED 3/6/26
                   <HeaderCell>Action</HeaderCell>
 
                   <Cell>
@@ -373,7 +373,7 @@ export default function ConvertToReservation() {
                       </span>
                     )}
                   </Cell>
-                </Column>
+                </Column> */}
               </Table>
             </div>
             {/* <div style={{ width: "85%", padding: 20 }}>

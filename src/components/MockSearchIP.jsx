@@ -59,7 +59,7 @@ export default function SearchReservation() {
   const { instance, accounts } = useMsal();
   const [isSubButtonLoading, setIsSubButtonLoading] = useState(false);
   const IPreg = RegExp(
-    /^10\.((0\.){2}([1-9]|[1-9]\d|[12]\d\d)|0\.([1-9]|[1-9]\d|[12]\d\d)\.([1-9]?\d|[12]\d\d)|([1-9]|[1-9]\d|[12]\d\d)(\.([1-9]?\d|[12]\d\d)){2})$/i
+    /^10\.((0\.){2}([1-9]|[1-9]\d|[12]\d\d)|0\.([1-9]|[1-9]\d|[12]\d\d)\.([1-9]?\d|[12]\d\d)|([1-9]|[1-9]\d|[12]\d\d)(\.([1-9]?\d|[12]\d\d)){2})$/i,
   );
   const Macreg = RegExp(/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/i);
 
@@ -398,7 +398,7 @@ export default function SearchReservation() {
               <HeaderCell>Description</HeaderCell>
               <Cell dataKey="description" />
             </Column>
-            <Column width={80} fixed="right" align="center">
+            {/* <Column width={80} fixed="right" align="center">
               <HeaderCell>Action</HeaderCell>
 
               <Cell>
@@ -439,7 +439,7 @@ export default function SearchReservation() {
                   </span>
                 )}
               </Cell>
-            </Column>
+            </Column> */}
           </Table>
         ) : (
           <Center>

@@ -46,12 +46,14 @@ function App() {
       <ChakraProvider>
         <PageLayout>
           <AuthenticatedTemplate>
-            {/* <div className="px-4 py-3 text-black bg-yellow-500">
-            <p className="text-sm font-medium text-center">
-              This tool is currently under development. Modifications will be
-              made frequently and you may encounter bugs.
-            </p>
-          </div> */}
+            <div className="px-4 py-3 text-black bg-yellow-400">
+              <p className="text-sm font-medium text-center">
+                ⚠ All DHCP reservation changes and modifications must have a
+                ticket opened with{" "}
+                <strong>KTG OPS - Platform Administrators</strong> until further
+                notice.
+              </p>
+            </div>
 
             <Tabs variant="enclosed" colorScheme="green" mt={6}>
               <TabList
@@ -543,13 +545,13 @@ function ProfileContent() {
       .acquireTokenSilent(request)
       .then((response) => {
         callMsGraph(response.accessToken).then((response) =>
-          setGraphData(response)
+          setGraphData(response),
         );
       })
       .catch((e) => {
         instance.acquireTokenPopup(request).then((response) => {
           callMsGraph(response.accessToken).then((response) =>
-            setGraphData(response)
+            setGraphData(response),
           );
         });
       });
@@ -566,13 +568,13 @@ function ProfileContent() {
       .acquireTokenSilent(request)
       .then((response) => {
         callDHCP(response.accessToken).then((response) =>
-          setDhcpData(response)
+          setDhcpData(response),
         );
       })
       .catch((e) => {
         instance.acquireTokenPopup(request).then((response) => {
           callDHCP(response.accessToken).then((response) =>
-            setDhcpData(response)
+            setDhcpData(response),
           );
         });
       });

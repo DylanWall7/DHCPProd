@@ -327,7 +327,7 @@ export default function DeleteReservation() {
                 //   setSelectedRow(rowData);
                 // }}
               >
-                <Column width={80} align="center" resizable>
+                {/* <Column width={80} align="center" resizable> //UPDATED 3/6/26
                   <HeaderCell>Action</HeaderCell>
 
                   <Cell>
@@ -374,7 +374,7 @@ export default function DeleteReservation() {
                       </span>
                     )}
                   </Cell>
-                </Column>
+                </Column> */}
                 <Column
                   width={120}
                   align="center"
@@ -457,10 +457,13 @@ export default function DeleteReservation() {
             <div className="flex flex-col">
               <p className="text-md">Search for All Reservations by Scope ID</p>
               <div className="flex gap-2  items-center ">
+                {/* <p className="text-small text-default-500">
+                  Add Reservation Manually 
+                </p> */}
                 <p className="text-small text-default-500">
-                  Add Reservation Manually
+                  List All Reservations
                 </p>
-                <AddResNoLease />
+                {/* <AddResNoLease /> */}
               </div>
             </div>
           </CardHeader>
